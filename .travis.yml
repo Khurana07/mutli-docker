@@ -1,0 +1,17 @@
+sudo: required
+services:  
+  - docker
+
+before_install:
+- docker build -t tusharkhurana/react-test -f ./client/Dockerfile.dev ./client
+- docker build myotherprojevt();
+
+script:
+  - docker run tusharkhurana/react-test npm test -- --coverage
+
+
+after_success:
+- docker build -t tusharkhurana/multi-client ./client
+- docker build -t tusharkhurana/multi-nginc  ./nginx
+- docker build -t tusharkhurana/multi-client ./server
+- docker build -t tusharkhurana/multi-client ./worker
