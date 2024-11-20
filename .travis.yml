@@ -15,3 +15,10 @@ after_success:
 - docker build -t tusharkhurana/multi-nginc  ./nginx
 - docker build -t tusharkhurana/multi-client ./server
 - docker build -t tusharkhurana/multi-client ./worker
+# Log in to the docker CLI
+- echo "%DOCKER_PASSWORD" | docker lohin -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub
+- docker push tusharkhurana/multi-client
+- docker push tusharkhurana/multi-nginx
+- docker push tusharkhurana/multi-server
+- docker push tusharkhurana/multi-worker
